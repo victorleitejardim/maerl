@@ -138,13 +138,13 @@ theme_set(theme_light())
 setwd("..")
 ```
 
-## Data
+## data
 
 ```{r data}
 #Set working directory
-setwd("Data/")
+setwd("data/")
 
-load("Complexity_data.RData")
+load("Complexity_data.Rdata")
 data_complesc <- read.csv("fauna_complesc.csv")
 traits_adeline <- read.csv("traits_homo.csv")
 classif <- read.csv("Classification_06_2022.csv")
@@ -153,7 +153,7 @@ new_dens <- read.csv2("Maerl_density_2022.csv", check.names = FALSE)
 pal <- c("#4477AA", "#8ECDDE", "#44AA99", "#858c64", "#e8bb5a",  "#EE8866", "#d44e65", "#FFAABB", "#7b538c", "#80898f" )
 
 
-#Environmental Data
+#Environmental data
 load("Granulo_imputed_point_21_04_2021.Rdata") #granulometry
 load("MA_hydrology_point.Rdata") #hidrology
 load("Depth_27_11_2020.Rdata") #bathy
@@ -209,7 +209,7 @@ ggplot(samplespoint %>% filter(Habitat == "Maerl", Season == "Spring", Site != "
   theme(text=element_text(size =15), axis.text.x = element_text(angle = 90, size = 15), legend.position = "bottom")
 ```
 
-# Data selection
+# data selection
 
 ```{r select data}
 #Select the 3 methods with the most years and sites possible
@@ -1421,7 +1421,7 @@ alpha_all <- alphaepi %>%
   bind_rows(alphaint)
 ```
 
-# Complexity Data
+# Complexity data
 
 ```{r complexity data}
 comp <- complexity %>% 
