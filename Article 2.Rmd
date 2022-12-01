@@ -92,7 +92,7 @@ library(kableExtra)
 ## Functions
 
 ```{r functions, echo = TRUE}
-setwd("Functions/")
+setwd("R/")
 source("pca_victor.R")
 source("box.cox.chord.R")
 source("triplot.rda.R")
@@ -505,7 +505,7 @@ fetch_max <- fetch_max %>%
   )
 
 
-# pdf("Output/fetch_map.pdf", width= 16, height=11.25)
+# pdf("outputs/fetch_map.pdf", width= 16, height=11.25)
 # map_fetch
 # dev.off()
 
@@ -529,7 +529,7 @@ fetch_max <- fetch_max %>%
   theme(legend.position = c(.21, .15), legend.direction = "horizontal", legend.title = element_text(face = "bold", colour = "gray35", size = 22), legend.text = element_text(size = 20, colour = "gray35"), axis.text = element_text(size = 20))
   )
 
-# pdf("Output/fetch_map_brittany.pdf", width= 16, height=11.25)
+# pdf("outputs/fetch_map_brittany.pdf", width= 16, height=11.25)
 # map_fetch
 # dev.off()
 ```
@@ -736,7 +736,7 @@ relabfil <- relabfil %>%
   mutate(thresh = forcats::fct_relevel(thresh, "Others", after = Inf))
 
 
-# pdf("Output/richesse_replicats.pdf")
+# pdf("outputs/richesse_replicats.pdf")
 
 for(i in unique(relabfil$Site)) {
 a <- relabfil[relabfil$Site == i,]
@@ -772,7 +772,7 @@ relabfil_mean <- relabfil_mean %>%
   mutate(thresh = forcats::fct_relevel(thresh, "Others", after = Inf))
 
 
-# pdf("Output/richesse_replicats_mean.pdf")
+# pdf("outputs/richesse_replicats_mean.pdf")
 
   p <- ggplot(data = relabfil_mean, aes(x= Site, y = abrel, fill = thresh)) 
   p <- p + geom_bar(position="stack", stat="identity")
@@ -808,7 +808,7 @@ fam_sel <- fam_abrel %>%
 fam_sel <- fam_sel %>% 
   mutate(thresh = forcats::fct_relevel(thresh, "Others", after = Inf))
 
-# pdf("Output/richesse_replicats_phylum.pdf")
+# pdf("outputs/richesse_replicats_phylum.pdf")
 
 for(i in unique(fam_sel$Site)) {
 a <- fam_sel[fam_sel$Site == i,]
@@ -833,7 +833,7 @@ fam_abrel_total <- maerl_data %>%
   ungroup()
 
 
-# pdf("Output/richesse_replicats_mean.pdf")
+# pdf("outputs/richesse_replicats_mean.pdf")
 
   p <- ggplot(data = fam_abrel_total, aes(x= Site, y = abrel, fill = Phylum)) 
   p <- p + geom_bar(position="stack", stat="identity")
@@ -998,7 +998,7 @@ for(i in names(P.incid)){
 }
 
 # Plot the graphs for each site
-pdf("Output/rarefaction.SM.pdf")
+pdf("outputs/rarefaction.SM.pdf")
 for(i in names(res)) {
   p <- ggiNEXT(res[[i]], type=1, color.var="site") 
   p <- p + theme(legend.position="none")
@@ -1665,7 +1665,7 @@ par(mfrow = c(1,1))
 screeplot(complexpca,bstick=TRUE) #only look at pc1 to pc3
 
 ## save as PDF
-# pdf("Output/pca_complex.pdf", width = 20, height = 8.75) 
+# pdf("outputs/pca_complex.pdf", width = 20, height = 8.75) 
 
 pca_victor(pca = complexpca, metadata = bccomp, main.group = "Site", scale.fill = pal, scale.colour = pal, goodness.thresh = 0.0, add.centroids = TRUE, nudge.x = c(0, 0.09, -0.055, .14, -0.05, 0, 0.06, -0.14, 0, 0), nudge.y = c(-.05, .06, -.05, .005, 0.055, -.05, -.05, .005, .05, -.05), stat1 = "ellipse", conf.level = .8, ysites = c(-.75, .75), xsites = c(-.75, .75), ysp = c(-1.9, 1.7), xsp = c(-1.9, 1.7), font.size = 20/.pt, axis.size = 22, axis.text = 20, c.size = 4)
 
@@ -1689,7 +1689,7 @@ screeplot(complexpca_sel,bstick=TRUE) #only look at pc1 and pc2, and maybe pc3
 
 ## save as PDF
 
-# pdf("Output//pca_complex.pdf", width = 20, height = 8.75) 
+# pdf("outputs//pca_complex.pdf", width = 20, height = 8.75) 
 
 pca_victor(pca = complexpca_sel, metadata = bccomp, main.group = "Site", scale.fill = pal, scale.colour = pal, goodness.thresh = 0.0, add.centroids = TRUE, stat1 = "ellipse", conf.level = .8, ysites = c(-.56, .56), xsites = c(-.56, .56), ysp = c(-1.9, 1.5), xsp = c(-1.9, 1.5), font.size = 20/.pt, axis.size = 22, axis.text = 20, c.size = 4)
 
@@ -1747,7 +1747,7 @@ screeplot(complexpca_sel,bstick=TRUE) #only look at pc1 and pc2, and maybe pc3
 
 ## save as PDF
 
-# pdf("Output//pca_complexT.pdf", width = 12, height = 5.25)
+# pdf("outputs//pca_complexT.pdf", width = 12, height = 5.25)
 
 pca_victor(pca = complexpca_sel, metadata = bccomp_med, main.group = "Site", scale.fill = pal, scale.colour = pal, goodness.thresh = 0.0, add.centroids = TRUE, stat1 = "chull", conf.level = .8, ysites = c(-1.1, .8), xsites = c(-1.1, .8), ysp = c(-1.7, 1.7), xsp = c(-1.7, 1.7), axis.size = 22, axis.text = 20, c.size = 3, nudge.x = c(-.15,0,-.15,0,0,.28,.15,.25,0,-.25), nudge.y = c(-.1,-.1,-.1,.13,.13,0,-.1,0,-.1,-.1), font.size = 12/.pt, ext.plot.scale = 2.5)
 
@@ -1827,7 +1827,7 @@ gvlma::gvlma(modfixalpha1)
 par(mfrow = c(2,2))
 plot(modfixalpha1) 
 
-# pdf("Output/Richness.pdf", width= 12, height=6)
+# pdf("outputs/Richness.pdf", width= 12, height=6)
 ggplot(data = modalpha , aes(x = PC2_score, y = S.obs, colour = Site))+
   geom_point(size = 4, alpha = .7)+
   scale_color_manual(values = pal) +
@@ -1898,7 +1898,7 @@ R2 <- partR2(Smodsel_ran1, partvars =  c("depth", "Fetch_max", "T_mean", "OM", "
 R2
 forestplot(R2)
 
-export_summs(modfixalpha2,Smodsel, Smodsel_ran1, error_pos = "right", to.file = "docx", file.name = "Output/models.docx")
+export_summs(modfixalpha2,Smodsel, Smodsel_ran1, error_pos = "right", to.file = "docx", file.name = "outputs/models.docx")
 
 # avPlots.invis <- function(MODEL, ...) {
 #   
@@ -1965,7 +1965,7 @@ gvlma::gvlma(modfixalpha1)
 par(mfrow = c(2,2))
 plot(modfixalpha1) 
 
-# pdf("Output/Density.pdf", width= 16, height=11.25)
+# pdf("outputs/Density.pdf", width= 16, height=11.25)
 ggplot(data = modalpha , aes(x = PC2_score, y = Fauna_Density, colour = Site))+
   geom_point()+
   scale_color_manual(values = pal) +
@@ -2014,7 +2014,7 @@ gvlma::gvlma(Dmodsel)
 par(mfrow = c(2,2))
 plot(Dmodsel)
 
-# export_summs(modfixalpha2, Smodsel, to.file = "docx", file.name = "Output/models.docx" )
+# export_summs(modfixalpha2, Smodsel, to.file = "docx", file.name = "outputs/models.docx" )
 
 effect_plot(Dmodsel, PC1_score, interval = TRUE, plot.points = TRUE, partial.residuals = FALSE)
 
@@ -2057,7 +2057,7 @@ gvlma::gvlma(modfixalpha1)
 par(mfrow = c(2,2))
 plot(modfixalpha1) 
 
-# pdf("Output/Density.pdf", width= 16, height=11.25)
+# pdf("outputs/Density.pdf", width= 16, height=11.25)
 ggplot(data = modalpha , aes(x = PC2_score, y = N2, colour = Site))+
   geom_point()+
   scale_color_manual(values = pal) +
@@ -2106,7 +2106,7 @@ par(mfrow = c(2,2))
 plot(Dmodsel)
 
 
-# export_summs(modfixalpha2, Smodsel, to.file = "docx", file.name = "Output/models.docx" )
+# export_summs(modfixalpha2, Smodsel, to.file = "docx", file.name = "outputs/models.docx" )
 
 
 
@@ -2822,7 +2822,7 @@ rownames(bcmaerl) == rownames(num_compenv)
 pcamaerl <- rda(bcmaerl)
 summary(pcamaerl)
 screeplot(pcamaerl, bstick = T)
-pdf("Output/pca_fauna.pdf", height = 5.25, width = 12)
+pdf("outputs/pca_fauna.pdf", height = 5.25, width = 12)
 pca_victor(pcamaerl, metadata = maerl_dens, main.group = "Site", scale.fill = pal, scale.colour = pal, goodness.thresh = .55, stat1 = "ellipse", add.centroids = TRUE, ysites = c(-0.18, .18), xsites = c(-.18,.18), ysp = c(-.5,.4), xsp = c(-.5,.4), nudge.y = c(0,0,-.017,.02,-.017,-.017,0,-.017,-.017,-.017), nudge.x = c(.05, -.05, .02, 0, 0, -.02, .05, 0, 0, 0), conf.level = .8, font.size = 12/.pt, ext.plot.scale = 2.5, point.size = 1.5, c.size = 2.5)
 dev.off()
 pca_victor(pcamaerl, axes = c(1,3), metadata = maerl_dens, main.group = "Site", scale.fill = pal, scale.colour = pal, goodness.thresh = .5, stat1 = "ellipse")
@@ -2836,14 +2836,14 @@ rdamaerl <- rda(formula = bcmaerl ~ Mud + depth + Current_mean + Branching_densi
 
 maerl_dens_rda <- maerl_dens %>%
   rename(site = Site)
-# pdf("Output/Partial_RDA_1_2.pdf", width = 12.39, height = 10.01)
+# pdf("outputs/Partial_RDA_1_2.pdf", width = 12.39, height = 10.01)
 autoplot.rda.victor(object = rdamaerl, axes = c(1,2), metadata = maerl_dens_rda, scale.fill = pal, scale.colour = pal, layers = c("sites", "biplot", "regression", "centroids"), thresh = 0.24, stat = "ellipse", lvl = .8, legend.position = c(.5,.9), title.size = 22, font.size = 22/.pt, arrows = FALSE) + 
   theme(legend.title = element_text(face = "bold", colour = "gray35", size = 22), legend.text = element_text(size = 20, colour = "gray35"), legend.position = "top", legend.background = element_blank(), legend.spacing.x = unit(0.5, "cm"), legend.box.background = element_blank(), legend.key = element_blank(), axis.text = element_text(size = 20)) + guides(fill = guide_legend(title.position = "top"), )+
   ylim(c(-.6, 0.6))+
   xlim(c(-.6, 0.6))
 # dev.off()
 
-# pdf("Output/Partial_RDA_1_3.pdf", width = 12.39, height = 10.01)
+# pdf("outputs/Partial_RDA_1_3.pdf", width = 12.39, height = 10.01)
 autoplot.rda.victor(object = rdamaerl, axes = c(1,3), metadata = maerl_dens_rda, scale.fill = pal, scale.colour = pal, layers = c("sites", "biplot", "regression", "centroids"), thresh = 0.24, stat = "ellipse", lvl = .8, legend.position = c(.5,.9), title.size = 22, font.size = 22/.pt, arrows = FALSE) + 
   theme(legend.title = element_text(face = "bold", colour = "gray35", size = 22), legend.text = element_text(size = 20, colour = "gray35"), legend.position = "right", legend.background = element_blank(), legend.spacing.x = unit(0.5, "cm"), legend.box.background = element_blank(), legend.key = element_blank(), axis.text = element_text(size = 20)) + guides(fill = guide_legend(title.position = "top"))+
   ylim(c(-.6, 0.6))+
@@ -2865,10 +2865,10 @@ rdamaerl.hp2
 plot(rdamaerl.hp2)
 
 #library(UpSetVP)
-# pdf("Output/upsetvp_sites.pdf",width = 12, height = 6)
+# pdf("outputs/upsetvp_sites.pdf",width = 12, height = 6)
 upset_vp(rdamaerl.hp2, cutoff = 0.005, int.var = "Complexity", pal = pal[1:8], title.cex = 22, axis.cex = 20, pch.size = 6, col.width = .8, effect.cex = 6)
 dev.off()
-pdf("Output/upsetvp.pdf", width = 12, height = 6)
+pdf("outputs/upsetvp.pdf", width = 12, height = 6)
 upset_vp(rdamaerl.hp, cutoff = 0.0001, int.var = "Complexity", pal = pal[1:5])
 # dev.off()
 
@@ -2997,7 +2997,7 @@ legp2 <- get_legend(p2)
 design <- c(patchwork::area(2, 1, 10, 3), patchwork::area(1, 1, 1, 3), patchwork::area(2, 4, 10, 4))
 
 design2 <- c(patchwork::area(2, 1, 10, 3), patchwork::area(1, 1, 1, 3), patchwork::area(2, 3, 10, 3))
-# pdf("Output/BetaPartition.pdf", width = 12, height=6)
+# pdf("outputs/BetaPartition.pdf", width = 12, height=6)
 bdp + legp + legp2 + patchwork::plot_layout(design = design)
 # dev.off()
 bdp2 + legp + legp2 + patchwork::plot_layout(design = design2)
@@ -3019,7 +3019,7 @@ ggplot(data =  bdcomplex, aes(y = BDtotal, fill = Site))+
   geom_boxplot()+
   scale_fill_manual(values = pal)
 ##---- PC1 ----
-# pdf("Output/BDTOT_PC1_full.pdf",  width= 16, height=11.25)
+# pdf("outputs/BDTOT_PC1_full.pdf",  width= 16, height=11.25)
 ggplot(data =  bdcomplex, aes(x = PC1_score, y = BDtotal, col = Site))+
   geom_point(size = 4)+
   scale_color_manual(values = pal) +
@@ -3049,7 +3049,7 @@ par(mfrow = c(2,2))
 plot(bdtotpol1)
 
 ##---- PC2 ----
-# pdf("Output/BDTot_PC2_full.pdf",  width= 16, height=11.25)
+# pdf("outputs/BDTot_PC2_full.pdf",  width= 16, height=11.25)
 ggplot(data =  bdcomplex, aes(x = -PC2_score, y = BDtotal, col = Site))+
   geom_point(size = 4)+
   scale_color_manual(values = pal) +
@@ -3061,7 +3061,7 @@ ggplot(data =  bdcomplex, aes(x = -PC2_score, y = BDtotal, col = Site))+
   guides(fill = guide_legend(title.position = "top"))
 # dev.off()
 
-# pdf("Output/BDTot_PC2_sT.pdf",  width= 16, height=11.25)
+# pdf("outputs/BDTot_PC2_sT.pdf",  width= 16, height=11.25)
 ggplot(data = bdcomplex %>% filter(Site != "Trevignon"), aes(x = -PC2_score, y = BDtotal, col = Site))+
   geom_point(size = 4)+
   scale_color_manual(values = pal[-4]) +
@@ -3093,7 +3093,7 @@ summary(bdtotran1)
 summ(bdtotran1, model.info = TRUE)
 plot(bdtotran1) 
 
-export_summs(bdtotfix3, to.file = "docx", file.name = "Output/models_bdtot.docx")  
+export_summs(bdtotfix3, to.file = "docx", file.name = "outputs/models_bdtot.docx")  
 
 
 
@@ -3747,11 +3747,11 @@ plot(rdint3)
   ggtitle("Richness Difference")+
   theme(plot.title = element_text(hjust = .5), legend.title = element_text(face = "bold", size = 22), axis.text.y = element_text(colour = "transparent"),  axis.text.x = element_text(angle = 45), legend.text = element_text(size = 20, colour = "gray35"), legend.background = element_blank(), legend.box.background = element_blank(), legend.key = element_blank(), axis.text = element_text(size = 20), axis.title = element_text(size =20, face = "bold")))
 
-pdf("Output/bdtot2.pdf", width= 12, height=6)
+pdf("outputs/bdtot2.pdf", width= 12, height=6)
 ggarrange(ps1, ps2, ps3, common.legend = TRUE, ncol = 3, legend = "top")
 dev.off()
 
-# pdf("Output/BetaPartition.pdf", width = 12, height=6)
+# pdf("outputs/BetaPartition.pdf", width = 12, height=6)
 ps1 + ps2 + ps3 + patchwork::plot_layout(design = design)
 
 
