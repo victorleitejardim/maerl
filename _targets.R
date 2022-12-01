@@ -16,6 +16,8 @@ list(
   tar_target(bccomp_med_data,read_bccomp_med(here::here("data", "bccomp_med.csv"))),
   
   # Prepare data 
-  tar_target (compnum, compnum_preprocessing(bccomp_med_data))
+  tar_target (compnum, compnum_preprocessing(bccomp_med_data)),
   
+  #Plot rda 
+  tar_target(rda_bccomp_med, rda_function(compnum))
 )
