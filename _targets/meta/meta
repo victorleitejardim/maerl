@@ -3,10 +3,13 @@ bccomp_med_data|stem|002d1098d9fcedae|5eb960537bf32bfb|80b79e4a3cf469be|-4850960
 compnum|stem|afd40b71eb524c7f|636c29408dd2cd80|71e8fed23c1c3a84|678011138||t19328.3634955082s|5896a04ef4d8e8d0|3577|rds|local|vector|||0||
 compnum_preprocessing|function|5bc8e821a1c232f2|||||||||||||||
 env_data|stem|26243085f4168d7b|d5af96fc530a15d1|f70a35b819427de5|-823028916||t19328.3634950863s|151ed87dd9e23558|3134|rds|local|vector|||0.32||
-env_mean_preprocessing|function|fc74f64288ae764f|||||||||||||||
+env_data_processing|stem|e53bc2fc001db98d|711b934d45498cf4|ca594961fb8aeb65|1616776707||t19328.3863030685s|61a8465ae6d93f6f|2971|rds|local|vector|||0||
+env_mean_preprocessing|function|3560b5f28a894e11|||||||||||||||
 pca.victor|function|99e79c10619f24af|||||||||||||||
-rda_bccomp_med|stem|328a503f55b6d9fd|92b59340131aa7b5|dd7610721208bbc5|1725649522||t19327.7061975831s|c5af6cbb28175c53|9711|rds|local|vector|||0.84||
-rda_env_data|stem||08f5c710d8e98042|c0b3933d267dc990|1047137623||t19328.3635058912s||0|rds|local|vector|||0.89||x doit être numérique
+plot_rdabccomp_med|stem|a4686614a7b5ddf5|bd0496e2375bcadb|382ca6571cd86809|211616239||t19328.4283300586s|7c875777e2112602|196298|rds|local|vector|||1.7|1m22mgroup_by_ was deprecated in dplyr 0.7.0.36mℹ39m Please use group_by instead.36mℹ39m See vignetteprogramming for more help36mℹ39m The deprecated feature was likely used in the 34mdplyr39m package.  Please report the issue at 3m34m8httpsgithub.comtidyversedplyrissueshttpsgithub.comtidyversedplyrissues839m23m.|
+rda_bccomp_med|stem|328a503f55b6d9fd|92b59340131aa7b5|10e0fcabc6742993|1725649522||t19328.3863133922s|c5af6cbb28175c53|9711|rds|local|vector|||0.86||
+rda_env_data|stem|075b085d5d4ac046|38c27f32479dd8b4|19256974483faee4|1047137623||t19328.3863137415s|70f12b4d547dc532|7487|rds|local|vector|||0||
 rda_function|function|2afb8e0cc4b29d07|||||||||||||||
 read_bccomp_med|function|2b393459705a3a6e|||||||||||||||
 read_env_mean|function|6b20e5851b4961e5|||||||||||||||
+save_plot|function|725a7358a707daf9|||||||||||||||
