@@ -9,10 +9,10 @@
 #'
 #' @examples
 #' #' ## Import data ----
-#' bccomp_med_data <- read_bccomp_med(here::here("data",  
+#' bccomp_med_data <- read_env_mean (here::here("data",  
 #'                                    "env_mean.csv"))
 
-read_bccomp_med <- function(file) {
+read_env_mean <- function(file) {
   
   ## Check if file exists ----
   

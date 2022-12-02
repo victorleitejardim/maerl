@@ -1,9 +1,22 @@
 name|type|data|command|depend|seed|path|time|size|bytes|format|repository|iteration|parent|children|seconds|warnings|error
+<<<<<<< HEAD
 bccomp_med_data|stem|002d1098d9fcedae|5eb960537bf32bfb|f30ae3ba7c606a0b|-485096056||t19327.6903071809s||4057|rds|local|vector|||0.015||Wrong file name env_mean.csv
 compnum|stem|dfe1677b70ea9236|636c29408dd2cd80|71e8fed23c1c3a84|678011138||t19327.6981544016s|b545d44254cc75be|3777|rds|local|vector|||0.01||
 compnum_preprocessing|function|5bc8e821a1c232f2|||||||||||||||
+=======
+bccomp_med_data|stem|002d1098d9fcedae|5eb960537bf32bfb|80b79e4a3cf469be|-485096056||t19328.3634910268s|3a8313ddf5822148|4057|rds|local|vector|||0.61||
+compnum|stem|afd40b71eb524c7f|636c29408dd2cd80|71e8fed23c1c3a84|678011138||t19328.3634955082s|5896a04ef4d8e8d0|3577|rds|local|vector|||0||
+compnum_preprocessing|function|5bc8e821a1c232f2|||||||||||||||
+env_data|stem|26243085f4168d7b|d5af96fc530a15d1|f70a35b819427de5|-823028916||t19328.3634950863s|151ed87dd9e23558|3134|rds|local|vector|||0.32||
+>>>>>>> 6a437e01c1e678177f98b521efbed0eb8e224328
 env_mean_preprocessing|function|fc74f64288ae764f|||||||||||||||
 pca.victor|function|99e79c10619f24af|||||||||||||||
 rda_bccomp_med|stem|328a503f55b6d9fd|92b59340131aa7b5|dd7610721208bbc5|1725649522||t19327.7061975831s|c5af6cbb28175c53|9711|rds|local|vector|||0.84||
+rda_env_data|stem||08f5c710d8e98042|c0b3933d267dc990|1047137623||t19328.3635058912s||0|rds|local|vector|||0.89||x doit être numérique
 rda_function|function|2afb8e0cc4b29d07|||||||||||||||
+<<<<<<< HEAD
 read_bccomp_med|function|6b20e5851b4961e5|||||||||||||||
+=======
+read_bccomp_med|function|2b393459705a3a6e|||||||||||||||
+read_env_mean|function|6b20e5851b4961e5|||||||||||||||
+>>>>>>> 6a437e01c1e678177f98b521efbed0eb8e224328
