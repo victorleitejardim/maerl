@@ -21,7 +21,7 @@ knitr::opts_chunk$set(collapse  = TRUE,
 <!-- badges: end -->
 
 
-Research Compendium of the project maerl for the rdatatoolbox
+Research Compendium of the project maerl for the rdatatoolbox course from the GDR Ecostat course at CESAB
 
 
 
@@ -29,7 +29,9 @@ Research Compendium of the project maerl for the rdatatoolbox
 
 Please cite this compendium as: 
 
-> **{{ PLEASE ADD A CITATION }}**
+> Benoit T., Jardim V. L. & Loutrage L. (2022) maerl: Projet rdatoolbox CESAB. URL: https://victorleitejardim.github.io/maerl/.
+
+
 
 
 
