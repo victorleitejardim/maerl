@@ -6,6 +6,7 @@
 
 ## Attach required packages ----
 library(targets)
+library(tarchetypes)
 library(ggplot2)
 library(bgplot)
 
@@ -53,9 +54,14 @@ list(
                                    add.centroids = TRUE, stat1 = "chull", conf.level = .8,
                                    axis.size = 12, axis.text = 12, c.size = 1.5,
                                    font.size = 8/.pt, ext.plot.scale = 2.5, add.labels = FALSE, point.size = 1)),
+  
+  ## add the plot as a png in quarto
   tar_target(pca_comp, save_plot(here::here("figures", "bgpca_comp.png"), plot_rdabccomp_med)),
   
-  tar_target(pca_env, save_plot(here::here("figures", "bgpca_env.png"), plot_env_data))
+  ## add the plot as a png in quarto
+  tar_target(pca_env, save_plot(here::here("figures", "bgpca_env.png"), plot_env_data)),
   
+  ## render quarto
+  tar_render(index, "index.qmd")
   
 )
