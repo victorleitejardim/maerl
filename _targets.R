@@ -38,24 +38,24 @@ list(
                                          scale.colour = c("#4477AA", "#8ECDDE", "#44AA99", "#858c64", "#e8bb5a",
                                                           "#EE8866", "#d44e65", "#FFAABB", "#7b538c", "#80898f" ),
                                          goodness.thresh = 0.0,
-                                         add.centroids = TRUE, stat1 = "chull", conf.level = .8,
+                                         add.centroids = TRUE, stat1 = "chull",
                                          ysites = c(-1.1, .8), xsites = c(-1.1, .8), ysp = c(-1.7, 1.7),
-                                         xsp = c(-1.7, 1.7), axis.size = 22, axis.text = 20, c.size = 3,
-                                         nudge.x = c(-.15,0,-.15,0,0,.28,.15,.25,0,-.25),
-                                         nudge.y = c(-.1,-.1,-.1,.13,.13,0,-.1,0,-.1,-.1),
-                                         font.size = 12/.pt, ext.plot.scale = 2.5)),
+                                         xsp = c(-1.7, 1.7), axis.size = 12, axis.text = 12, c.size = 1.5,
+                                         font.size = 8/.pt, ext.plot.scale = 2.5, add.labels = FALSE, point.size = 1)),
   #plot env data
   tar_target(plot_env_data, bg_pca(rda_env_data, metadata = env_data, main.group = "Site",
                                    scale.fill = c("#4477AA", "#8ECDDE", "#44AA99", "#858c64", "#e8bb5a",
                                                   "#EE8866", "#d44e65", "#FFAABB", "#7b538c", "#80898f" ),
                                    scale.colour = c("#4477AA", "#8ECDDE", "#44AA99", "#858c64", "#e8bb5a",
                                                     "#EE8866", "#d44e65", "#FFAABB", "#7b538c", "#80898f" ),
-                                   goodness.thresh = 0.0,
+                                   goodness.thresh = 0.0, ysites = c(-1, 1.5), xsites = c(-1, 1.5),
+                                   ysp = c(-2, 2.1), xsp = c(-2, 2.1),
                                    add.centroids = TRUE, stat1 = "chull", conf.level = .8,
-                                   axis.size = 22, axis.text = 20, c.size = 3,
-                                   nudge.x = c(-.15,0,-.15,0,0,.28,.15,.25,0,-.25),
-                                   nudge.y = c(-.1,-.1,-.1,.13,.13,0,-.1,0,-.1,-.1),
-                                   font.size = 12/.pt, ext.plot.scale = 2.5))
+                                   axis.size = 12, axis.text = 12, c.size = 1.5,
+                                   font.size = 8/.pt, ext.plot.scale = 2.5, add.labels = FALSE, point.size = 1)),
+  tar_target(pca_comp, save_plot(here::here("figures", "bgpca_comp.png"), plot_rdabccomp_med)),
+  
+  tar_target(pca_env, save_plot(here::here("figures", "bgpca_env.png"), plot_env_data))
   
   
 )

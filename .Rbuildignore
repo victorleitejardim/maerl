@@ -2,3 +2,5 @@
 ^renv\.lock$
 ^figures$
 ^analyses$
+^.*\.Rproj$
+^\.Rproj\.user$

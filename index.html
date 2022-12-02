@@ -1,0 +1,918 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.2.269">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+<meta name="author" content="Liz Loutrage">
+<meta name="author" content="Thomas Benoit">
+<meta name="author" content="Victor Leite Jardim">
+
+<title>Projet rdatoolbox CESAB</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1.6em;
+  vertical-align: middle;
+}
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { color: #008000; } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { color: #008000; font-weight: bold; } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
+
+
+<script src="index_files/libs/clipboard/clipboard.min.js"></script>
+<script src="index_files/libs/quarto-html/quarto.js"></script>
+<script src="index_files/libs/quarto-html/popper.min.js"></script>
+<script src="index_files/libs/quarto-html/tippy.umd.min.js"></script>
+<script src="index_files/libs/quarto-html/anchor.min.js"></script>
+<link href="index_files/libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="index_files/libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="index_files/libs/bootstrap/bootstrap.min.js"></script>
+<link href="index_files/libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="index_files/libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
+<script src="index_files/libs/htmlwidgets-1.5.4/htmlwidgets.js"></script>
+<link href="index_files/libs/vis-9.1.0/vis-network.min.css" rel="stylesheet">
+<script src="index_files/libs/vis-9.1.0/vis-network.min.js"></script>
+<script src="index_files/libs/visNetwork-binding-2.1.2/visNetwork.js"></script>
+
+
+</head>
+
+<body>
+
+<div id="quarto-content" class="page-columns page-rows-contents page-layout-full toc-left">
+<div id="quarto-sidebar-toc-left" class="sidebar toc-left">
+  <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">Sections</h2>
+   
+  <ul>
+  <li><a href="#créer-des-beaux-biplots-acp-avec-bgplot" id="toc-créer-des-beaux-biplots-acp-avec-bgplot" class="nav-link active" data-scroll-target="#créer-des-beaux-biplots-acp-avec-bgplot">Créer des beaux biplots ACP avec bgplot</a>
+  <ul class="collapse">
+  <li><a href="#création-dun-package-et-publication-sur-github" id="toc-création-dun-package-et-publication-sur-github" class="nav-link" data-scroll-target="#création-dun-package-et-publication-sur-github">Création d’un package et publication sur github</a></li>
+  <li><a href="#création-dun-workflow-sur-targets-pour-lanalyse" id="toc-création-dun-workflow-sur-targets-pour-lanalyse" class="nav-link" data-scroll-target="#création-dun-workflow-sur-targets-pour-lanalyse">Création d’un workflow sur targets pour l’analyse</a></li>
+  <li><a href="#analyse-des-données" id="toc-analyse-des-données" class="nav-link" data-scroll-target="#analyse-des-données">Analyse des données</a></li>
+  </ul></li>
+  </ul>
+</nav>
+</div>
+<div id="quarto-margin-sidebar" class="sidebar margin-sidebar zindex-bottom">
+</div>
+<main class="content column-page-right" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title">Projet rdatoolbox CESAB</h1>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    <div>
+    <div class="quarto-title-meta-heading">Authors</div>
+    <div class="quarto-title-meta-contents">
+             <p>Liz Loutrage </p>
+             <p>Thomas Benoit </p>
+             <p>Victor Leite Jardim </p>
+          </div>
+  </div>
+    
+  
+    
+  </div>
+  
+
+</header>
+
+<section id="créer-des-beaux-biplots-acp-avec-bgplot" class="level2">
+<h2 class="anchored" data-anchor-id="créer-des-beaux-biplots-acp-avec-bgplot">Créer des beaux biplots ACP avec bgplot</h2>
+<section id="création-dun-package-et-publication-sur-github" class="level3">
+<h3 class="anchored">Création d’un package et publication sur github</h3>
+<p><a href="https://github.com/victorleitejardim/bgplot">page bgplot sur github</a></p>
+<p>Regardons la page aide de la fonction bg_pca :</p>
+<div class="cell">
+<div class="cell-output-display">
+
+<title>R: bg_pca</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.15.3/dist/katex.min.css">
+<script type="text/javascript">
+const macros = { "\\R": "\\textsf{R}", "\\code": "\\texttt"};
+function processMathHTML() {
+    var l = document.getElementsByClassName('reqn');
+    for (let e of l) { katex.render(e.textContent, e, { throwOnError: false, macros }); }
+    return;
+}</script>
+<script defer="" src="https://cdn.jsdelivr.net/npm/katex@0.15.3/dist/katex.min.js" onload="processMathHTML();"></script>
+<link rel="stylesheet" type="text/css" href="R.css">
+<div class="container">
+
+<table style="width: 100%;"><tbody><tr><td>bg_pca</td><td style="text-align: right;">R Documentation</td></tr></tbody></table>
+
+<h2 class="anchored" data-anchor-id="création-dun-package-et-publication-sur-github">bg_pca</h2>
+
+<h3 class="anchored">Description</h3>
+
+<p>This function is built on pca output of vegan rda function and
+uses Aurelien Boye's code as a basis for creating pretty PCAs but
+with a lot of new cosmetic options
+</p>
+
+
+<h3 class="anchored">Usage</h3>
+
+<pre><code class="language-R">bg_pca(
+  pca,
+  axes = c(1, 2),
+  metadata = NULL,
+  site.scaling = 1,
+  species.scaling = 2,
+  goodness.axis = 2,
+  goodness.thresh = 0.3,
+  main.group = NULL,
+  second.group = NULL,
+  nudge.x = NULL,
+  nudge.y = NULL,
+  scale.fill = NULL,
+  scale.shape = NULL,
+  scale.colour = NULL,
+  labels = NULL,
+  print.sp.thresh = FALSE,
+  ext.plot.scale = 5,
+  add.stat1 = TRUE,
+  stat1 = "chull",
+  add.stat2 = FALSE,
+  stat2 = NULL,
+  add.dens = TRUE,
+  add.centroids = FALSE,
+  point.size = 2.5,
+  c.size = 5,
+  p.alpha = 1,
+  font.size = 18/.pt,
+  axis.size = 22,
+  axis.text = 20,
+  conf.level = 0.95,
+  ysites = NULL,
+  xsites = NULL,
+  ysp = NULL,
+  xsp = NULL,
+  add.labels = TRUE
+)
+</code></pre>
+
+
+<h3 class="anchored">Arguments</h3>
+
+<table>
+<tbody><tr style="vertical-align: top;"><td><code>pca</code></td>
+<td>
+<p>a vegan pca output</p>
+</td></tr>
+<tr style="vertical-align: top;"><td><code>axes</code></td>
+<td>
+<p>numeric vector;the selected pca axes to plot</p>
+</td></tr>
+<tr style="vertical-align: top;"><td><code>metadata</code></td>
+<td>
+<p>a table containing the metadata mandatory to define the
+main and second groups</p>
+</td></tr>
+<tr style="vertical-align: top;"><td><code>site.scaling</code></td>
+<td>
+<p>numeric; scaling for the first plot -  defaut is
+scaling 1</p>
+</td></tr>
+<tr style="vertical-align: top;"><td><code>species.scaling</code></td>
+<td>
+<p>numeric; scaling for the second plot - defaut is
+scaling 2</p>
+</td></tr>
+<tr style="vertical-align: top;"><td><code>goodness.axis</code></td>
+<td>
+<p>numeric; the number of axis used to calculate the goodness
+of fit of the species</p>
+</td></tr>
+<tr style="vertical-align: top;"><td><code>goodness.thresh</code></td>
+<td>
+<p>numeric; goodness of fit threshold for selecting species</p>
+</td></tr>
+<tr style="vertical-align: top;"><td><code>main.group</code></td>
+<td>
+<p>factor; defines the grouping variable used to calculate the
+densities and to define the color and fill aesthethics, it cannot be empty</p>
+</td></tr>
+<tr style="vertical-align: top;"><td><code>second.group</code></td>
+<td>
+<p>factor; defines a second level of grouping that, if present,
+will be highlighted with different shape</p>
+</td></tr>
+<tr style="vertical-align: top;"><td><code>nudge.x</code></td>
+<td>
+<p>numeric vector; defines the gap between the labels and the group
+centroid in the x axis, it must have the same length as the grouping variables
+defined in main.group</p>
+</td></tr>
+<tr style="vertical-align: top;"><td><code>nudge.y</code></td>
+<td>
+<p>numeric vector; defines the gap between the labels and the group
+centroid in the y axis, it must have the same length as the grouping variables
+defined in main.group</p>
+</td></tr>
+<tr style="vertical-align: top;"><td><code>scale.fill</code></td>
+<td>
+<p>string; contains the palette for fill aesthetics</p>
+</td></tr>
+<tr style="vertical-align: top;"><td><code>scale.shape</code></td>
+<td>
+<p>numeric vector; contains the shape types for shape aesthetics</p>
+</td></tr>
+<tr style="vertical-align: top;"><td><code>scale.colour</code></td>
+<td>
+<p>string; contains the palette for colour aesthetics</p>
+</td></tr>
+<tr style="vertical-align: top;"><td><code>labels</code></td>
+<td>
+<p>factor; factor in metadata containing the label of each level of
+the grouping variables in main.group or second.group</p>
+</td></tr>
+<tr style="vertical-align: top;"><td><code>print.sp.thresh</code></td>
+<td>
+<p>logical; print the goodness of fit threshold for
+selecting species' vectors</p>
+</td></tr>
+<tr style="vertical-align: top;"><td><code>ext.plot.scale</code></td>
+<td>
+<p>numeric; scale for density plots in proportion to other
+plots</p>
+</td></tr>
+<tr style="vertical-align: top;"><td><code>add.stat1</code></td>
+<td>
+<p>logical; add either a convex hull or an ellipse to each group
+on the first plot</p>
+</td></tr>
+<tr style="vertical-align: top;"><td><code>stat1</code></td>
+<td>
+<p>character; choose between a convex hull "chull" or an ellipse
+"ellipse" for the first plot</p>
+</td></tr>
+<tr style="vertical-align: top;"><td><code>add.stat2</code></td>
+<td>
+<p>logical; add either a convex hull or an ellipse to each group
+on the second plot</p>
+</td></tr>
+<tr style="vertical-align: top;"><td><code>stat2</code></td>
+<td>
+<p>character; choose between a convex hull "chull" or an ellipse
+"ellipse" for the second plot</p>
+</td></tr>
+<tr style="vertical-align: top;"><td><code>add.dens</code></td>
+<td>
+<p>logical; add the density plots</p>
+</td></tr>
+<tr style="vertical-align: top;"><td><code>add.centroids</code></td>
+<td>
+<p>logical; add centroids for each group</p>
+</td></tr>
+<tr style="vertical-align: top;"><td><code>point.size</code></td>
+<td>
+<p>numeric; define sites' point size</p>
+</td></tr>
+<tr style="vertical-align: top;"><td><code>c.size</code></td>
+<td>
+<p>numeric; define centroids' point size</p>
+</td></tr>
+<tr style="vertical-align: top;"><td><code>p.alpha</code></td>
+<td>
+<p>numeric;  define the alpha for sites' points</p>
+</td></tr>
+<tr style="vertical-align: top;"><td><code>font.size</code></td>
+<td>
+<p>character;  defines the font size for geom_label using
+the syntax "18/.pt"</p>
+</td></tr>
+<tr style="vertical-align: top;"><td><code>axis.size</code></td>
+<td>
+<p>numeric; defines the font size for the axes titles</p>
+</td></tr>
+<tr style="vertical-align: top;"><td><code>axis.text</code></td>
+<td>
+<p>numeric; defines the font size fot the axes text</p>
+</td></tr>
+<tr style="vertical-align: top;"><td><code>conf.level</code></td>
+<td>
+<p>numeric; defines the C.I. of the ellipse</p>
+</td></tr>
+<tr style="vertical-align: top;"><td><code>ysites</code></td>
+<td>
+<p>numeric vector; force y axis limits for the first plot</p>
+</td></tr>
+<tr style="vertical-align: top;"><td><code>xsites</code></td>
+<td>
+<p>numeric vector; force x axis limits for the first plot</p>
+</td></tr>
+<tr style="vertical-align: top;"><td><code>ysp</code></td>
+<td>
+<p>numeric vector; force y axis limits for the second plot</p>
+</td></tr>
+<tr style="vertical-align: top;"><td><code>xsp</code></td>
+<td>
+<p>numeric vector; force x axis limits for the second plot</p>
+</td></tr>
+<tr style="vertical-align: top;"><td><code>add.labels</code></td>
+<td>
+<p>logical; add geom_label for plotting the group names</p>
+</td></tr>
+</tbody></table>
+
+
+<h3 class="anchored">Value</h3>
+
+<p>returns a grid.arrange with two plots with the species and sites
+scaling biplots.
+</p>
+
+
+<h3 class="anchored">Examples</h3>
+
+<pre><code class="language-R">set.seed(100)
+</code></pre>
+
+
+</div>
+
+</div>
+</div>
+</section>
+<section id="création-dun-workflow-sur-targets-pour-lanalyse" class="level3">
+<h3 class="anchored" data-anchor-id="création-dun-workflow-sur-targets-pour-lanalyse">Création d’un workflow sur targets pour l’analyse</h3>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>targets<span class="sc">::</span><span class="fu">tar_visnetwork</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Warning messages:
+1: replacing previous import ‘data.table::last’ by ‘dplyr::last’ when loading ‘bgplot’ 
+2: replacing previous import ‘data.table::first’ by ‘dplyr::first’ when loading ‘bgplot’ 
+3: replacing previous import ‘data.table::between’ by ‘dplyr::between’ when loading ‘bgplot’ 
+4: replacing previous import ‘cowplot::get_legend’ by ‘ggpubr::get_legend’ when loading ‘bgplot’ 
+5: replacing previous import ‘dplyr::combine’ by ‘gridExtra::combine’ when loading ‘bgplot’ </code></pre>
+</div>
+<div class="cell-output-display">
+<div id="htmlwidget-f58a7616134d1f78271b" style="width:100%;height:464px;" class="visNetwork html-widget"></div>
+<script type="application/json" data-for="htmlwidget-f58a7616134d1f78271b">{"x":{"nodes":{"name":["bccomp_med_data","compnum","env_data","env_data_processing","pca_comp","pca_env","plot_env_data","plot_rdabccomp_med","rda_bccomp_med","rda_env_data","read_env_mean","compnum_preprocessing","env_mean_preprocessing","save_plot","rda_function","read_bccomp_med"],"type":["stem","stem","stem","stem","stem","stem","stem","stem","stem","stem","function","function","function","function","function","function"],"status":["uptodate","uptodate","uptodate","uptodate","uptodate","uptodate","uptodate","uptodate","uptodate","uptodate","uptodate","uptodate","uptodate","uptodate","uptodate","uptodate"],"seconds":[2.59,0.005,0.037,0.001,1.246,0.296,0.558,0.725,0.003,0.002,null,null,null,null,null,null],"bytes":[4057,2083,3134,2971,98,97,196367,191434,4542,7487,null,null,null,null,null,null],"branches":[null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null],"label":["bccomp_med_data","compnum","env_data","env_data_processing","pca_comp","pca_env","plot_env_data","plot_rdabccomp_med","rda_bccomp_med","rda_env_data","read_env_mean","compnum_preprocessing","env_mean_preprocessing","save_plot","rda_function","read_bccomp_med"],"color":["#354823","#354823","#354823","#354823","#354823","#354823","#354823","#354823","#354823","#354823","#354823","#354823","#354823","#354823","#354823","#354823"],"id":["bccomp_med_data","compnum","env_data","env_data_processing","pca_comp","pca_env","plot_env_data","plot_rdabccomp_med","rda_bccomp_med","rda_env_data","read_env_mean","compnum_preprocessing","env_mean_preprocessing","save_plot","rda_function","read_bccomp_med"],"level":[2,3,2,3,6,6,5,5,4,4,1,1,1,1,1,1],"shape":["dot","dot","dot","dot","dot","dot","dot","dot","dot","dot","triangle","triangle","triangle","triangle","triangle","triangle"]},"edges":{"from":["plot_rdabccomp_med","save_plot","bccomp_med_data","rda_bccomp_med","bccomp_med_data","compnum_preprocessing","env_data","env_mean_preprocessing","read_env_mean","read_bccomp_med","env_data_processing","rda_function","plot_env_data","save_plot","env_data","rda_env_data","compnum","rda_function"],"to":["pca_comp","pca_comp","plot_rdabccomp_med","plot_rdabccomp_med","compnum","compnum","env_data_processing","env_data_processing","env_data","bccomp_med_data","rda_env_data","rda_env_data","pca_env","pca_env","plot_env_data","plot_env_data","rda_bccomp_med","rda_bccomp_med"],"arrows":["to","to","to","to","to","to","to","to","to","to","to","to","to","to","to","to","to","to"]},"nodesToDataframe":true,"edgesToDataframe":true,"options":{"width":"100%","height":"100%","nodes":{"shape":"dot","physics":false},"manipulation":{"enabled":false},"edges":{"smooth":{"type":"cubicBezier","forceDirection":"horizontal"}},"physics":{"stabilization":false},"interaction":{"zoomSpeed":1},"layout":{"hierarchical":{"enabled":true,"direction":"LR"}}},"groups":null,"width":null,"height":null,"idselection":{"enabled":false,"style":"width: 150px; height: 26px","useLabels":true,"main":"Select by id"},"byselection":{"enabled":false,"style":"width: 150px; height: 26px","multiple":false,"hideColor":"rgba(200,200,200,0.5)","highlight":false},"main":{"text":"","style":"font-family:Georgia, Times New Roman, Times, serif;font-weight:bold;font-size:20px;text-align:center;"},"submain":null,"footer":null,"background":"rgba(0, 0, 0, 0)","highlight":{"enabled":true,"hoverNearest":false,"degree":{"from":1,"to":1},"algorithm":"hierarchical","hideColor":"rgba(200,200,200,0.5)","labelOnly":true},"collapse":{"enabled":true,"fit":false,"resetHighlight":true,"clusterOptions":null,"keepCoord":true,"labelSuffix":"(cluster)"},"legend":{"width":0.2,"useGroups":false,"position":"right","ncol":1,"stepX":100,"stepY":100,"zoom":true,"nodes":{"label":["Up to date","Stem","Function"],"color":["#354823","#899DA4","#899DA4"],"shape":["dot","dot","triangle"]},"nodesToDataframe":true},"tooltipStay":300,"tooltipStyle":"position: fixed;visibility:hidden;padding: 5px;white-space: nowrap;font-family: verdana;font-size:14px;font-color:#000000;background-color: #f5f4ed;-moz-border-radius: 3px;-webkit-border-radius: 3px;border-radius: 3px;border: 1px solid #808074;box-shadow: 3px 3px 10px rgba(0, 0, 0, 0.2);"},"evals":[],"jsHooks":[]}</script>
+</div>
+</div>
+</section>
+<section id="analyse-des-données" class="level3">
+<h3 class="anchored" data-anchor-id="analyse-des-données">Analyse des données</h3>
+<section id="données-sur-la-complexité-structurelle-du-maërl" class="level4">
+<h4 class="anchored" data-anchor-id="données-sur-la-complexité-structurelle-du-maërl">Données sur la complexité structurelle du maërl</h4>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>comp <span class="ot">&lt;-</span> targets<span class="sc">::</span><span class="fu">tar_read</span>(bccomp_med_data)</span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>knitr<span class="sc">::</span><span class="fu">kable</span>(<span class="fu">head</span>(comp[<span class="sc">-</span><span class="dv">1</span>]), <span class="at">caption =</span> <span class="fu">paste</span>(<span class="st">"Données et metadonnées de complexité"</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<table class="table table-sm table-striped">
+<caption>Données et metadonnées de complexité</caption>
+<colgroup>
+<col style="width: 3%">
+<col style="width: 5%">
+<col style="width: 6%">
+<col style="width: 9%">
+<col style="width: 7%">
+<col style="width: 4%">
+<col style="width: 4%">
+<col style="width: 5%">
+<col style="width: 5%">
+<col style="width: 5%">
+<col style="width: 5%">
+<col style="width: 5%">
+<col style="width: 5%">
+<col style="width: 5%">
+<col style="width: 7%">
+<col style="width: 7%">
+<col style="width: 6%">
+<col style="width: 5%">
+</colgroup>
+<thead>
+<tr class="header">
+<th style="text-align: left;">Mini</th>
+<th style="text-align: left;">Site</th>
+<th style="text-align: left;">Point</th>
+<th style="text-align: right;">Branching_density</th>
+<th style="text-align: right;">Broken_density</th>
+<th style="text-align: right;">D_bin</th>
+<th style="text-align: right;">D_gray</th>
+<th style="text-align: right;">L</th>
+<th style="text-align: right;">I</th>
+<th style="text-align: right;">S</th>
+<th style="text-align: right;">Sphericity</th>
+<th style="text-align: right;">DR1</th>
+<th style="text-align: right;">DR2</th>
+<th style="text-align: right;">DR3</th>
+<th style="text-align: right;">Alive_Density</th>
+<th style="text-align: right;">Total_Density</th>
+<th style="text-align: right;">Alive_Total</th>
+<th style="text-align: right;">Dry_weight</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">MBE_1</td>
+<td style="text-align: left;">Belle-ile</td>
+<td style="text-align: left;">Belle-ile 1</td>
+<td style="text-align: right;">3.0</td>
+<td style="text-align: right;">0.0000000</td>
+<td style="text-align: right;">1.11030</td>
+<td style="text-align: right;">2.65270</td>
+<td style="text-align: right;">0.4979685</td>
+<td style="text-align: right;">0.4938065</td>
+<td style="text-align: right;">0.9732748</td>
+<td style="text-align: right;">0.6690109</td>
+<td style="text-align: right;">0.4548275</td>
+<td style="text-align: right;">0.7036919</td>
+<td style="text-align: right;">0.6165675</td>
+<td style="text-align: right;">12.68201</td>
+<td style="text-align: right;">41.87685</td>
+<td style="text-align: right;">0.0782037</td>
+<td style="text-align: right;">12.655986</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">MBE_2</td>
+<td style="text-align: left;">Belle-ile</td>
+<td style="text-align: left;">Belle-ile 2</td>
+<td style="text-align: right;">4.5</td>
+<td style="text-align: right;">0.0867769</td>
+<td style="text-align: right;">1.11215</td>
+<td style="text-align: right;">2.65165</td>
+<td style="text-align: right;">0.4974653</td>
+<td style="text-align: right;">0.4955332</td>
+<td style="text-align: right;">0.9849073</td>
+<td style="text-align: right;">0.6777679</td>
+<td style="text-align: right;">0.4683209</td>
+<td style="text-align: right;">0.4006827</td>
+<td style="text-align: right;">0.7756199</td>
+<td style="text-align: right;">12.44767</td>
+<td style="text-align: right;">36.52428</td>
+<td style="text-align: right;">0.1235712</td>
+<td style="text-align: right;">12.411912</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">MBE_3</td>
+<td style="text-align: left;">Belle-ile</td>
+<td style="text-align: left;">Belle-ile 3</td>
+<td style="text-align: right;">5.4</td>
+<td style="text-align: right;">0.1527778</td>
+<td style="text-align: right;">1.12950</td>
+<td style="text-align: right;">2.65875</td>
+<td style="text-align: right;">0.4977127</td>
+<td style="text-align: right;">0.4958590</td>
+<td style="text-align: right;">0.9992633</td>
+<td style="text-align: right;">0.7583624</td>
+<td style="text-align: right;">0.5558932</td>
+<td style="text-align: right;">0.6120709</td>
+<td style="text-align: right;">0.7309201</td>
+<td style="text-align: right;">12.45524</td>
+<td style="text-align: right;">37.00548</td>
+<td style="text-align: right;">0.1176868</td>
+<td style="text-align: right;">10.605813</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">MCM_1</td>
+<td style="text-align: left;">Camaret</td>
+<td style="text-align: left;">Camaret 1</td>
+<td style="text-align: right;">4.8</td>
+<td style="text-align: right;">0.0000000</td>
+<td style="text-align: right;">1.13075</td>
+<td style="text-align: right;">2.66595</td>
+<td style="text-align: right;">0.4969688</td>
+<td style="text-align: right;">0.4945859</td>
+<td style="text-align: right;">0.9683840</td>
+<td style="text-align: right;">0.7150298</td>
+<td style="text-align: right;">0.5116859</td>
+<td style="text-align: right;">0.5772756</td>
+<td style="text-align: right;">0.7308268</td>
+<td style="text-align: right;">10.02223</td>
+<td style="text-align: right;">22.89245</td>
+<td style="text-align: right;">0.2084981</td>
+<td style="text-align: right;">5.922440</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">MCM_2</td>
+<td style="text-align: left;">Camaret</td>
+<td style="text-align: left;">Camaret 2</td>
+<td style="text-align: right;">6.0</td>
+<td style="text-align: right;">0.1527778</td>
+<td style="text-align: right;">1.15585</td>
+<td style="text-align: right;">2.67855</td>
+<td style="text-align: right;">0.4985253</td>
+<td style="text-align: right;">0.4954821</td>
+<td style="text-align: right;">1.0229811</td>
+<td style="text-align: right;">0.7482275</td>
+<td style="text-align: right;">0.5217834</td>
+<td style="text-align: right;">0.7260496</td>
+<td style="text-align: right;">0.6443955</td>
+<td style="text-align: right;">10.20350</td>
+<td style="text-align: right;">26.47245</td>
+<td style="text-align: right;">0.1394619</td>
+<td style="text-align: right;">6.929264</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">MCM_3</td>
+<td style="text-align: left;">Camaret</td>
+<td style="text-align: left;">Camaret 3</td>
+<td style="text-align: right;">5.8</td>
+<td style="text-align: right;">0.0867769</td>
+<td style="text-align: right;">1.15350</td>
+<td style="text-align: right;">2.67705</td>
+<td style="text-align: right;">0.4977679</td>
+<td style="text-align: right;">0.4959125</td>
+<td style="text-align: right;">0.9830391</td>
+<td style="text-align: right;">0.7054588</td>
+<td style="text-align: right;">0.4690373</td>
+<td style="text-align: right;">0.5683869</td>
+<td style="text-align: right;">0.7029899</td>
+<td style="text-align: right;">11.03784</td>
+<td style="text-align: right;">31.48536</td>
+<td style="text-align: right;">0.1100669</td>
+<td style="text-align: right;">8.851414</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</section>
+<section id="pca-de-la-complexité" class="level4">
+<h4 class="anchored" data-anchor-id="pca-de-la-complexité">PCA de la complexité</h4>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>targets<span class="sc">::</span><span class="fu">tar_load</span>(pca_comp)</span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>knitr<span class="sc">::</span><span class="fu">include_graphics</span>(pca_comp)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<p><img src="figures/bgpca_comp.png" class="img-fluid" width="1050"></p>
+</div>
+</div>
+</section>
+<section id="données-de-lenvironnement" class="level4">
+<h4 class="anchored" data-anchor-id="données-de-lenvironnement">Données de l’environnement</h4>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>env <span class="ot">&lt;-</span> targets<span class="sc">::</span><span class="fu">tar_read</span>(env_data)</span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>knitr<span class="sc">::</span><span class="fu">kable</span>(<span class="fu">head</span>(env[<span class="sc">-</span><span class="dv">1</span>]), <span class="at">caption =</span> <span class="fu">paste</span>(<span class="st">"Données et metadonnées environnementales"</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<table class="table table-sm table-striped">
+<caption>Données et metadonnées environnementales</caption>
+<colgroup>
+<col style="width: 6%">
+<col style="width: 8%">
+<col style="width: 7%">
+<col style="width: 10%">
+<col style="width: 6%">
+<col style="width: 6%">
+<col style="width: 6%">
+<col style="width: 6%">
+<col style="width: 6%">
+<col style="width: 6%">
+<col style="width: 6%">
+<col style="width: 9%">
+<col style="width: 6%">
+<col style="width: 6%">
+</colgroup>
+<thead>
+<tr class="header">
+<th style="text-align: left;">Site</th>
+<th style="text-align: left;">Point</th>
+<th style="text-align: right;">Grain_size</th>
+<th style="text-align: right;">Kurtosis.fw.um</th>
+<th style="text-align: right;">Trask(So)</th>
+<th style="text-align: right;">Gravel</th>
+<th style="text-align: right;">Mud</th>
+<th style="text-align: right;">OM</th>
+<th style="text-align: right;">T_mean</th>
+<th style="text-align: right;">T_max</th>
+<th style="text-align: right;">T_sd</th>
+<th style="text-align: right;">Current_mean</th>
+<th style="text-align: right;">depth</th>
+<th style="text-align: right;">Fetch_max</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">Belle-ile</td>
+<td style="text-align: left;">Belle-ile 1</td>
+<td style="text-align: right;">104568.00</td>
+<td style="text-align: right;">2.287500</td>
+<td style="text-align: right;">1.418667</td>
+<td style="text-align: right;">85.07483</td>
+<td style="text-align: right;">4.251583</td>
+<td style="text-align: right;">3.663683</td>
+<td style="text-align: right;">12.82650</td>
+<td style="text-align: right;">16.19018</td>
+<td style="text-align: right;">2.190511</td>
+<td style="text-align: right;">0.1855456</td>
+<td style="text-align: right;">4.000000</td>
+<td style="text-align: right;">81.54352</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Belle-ile</td>
+<td style="text-align: left;">Belle-ile 2</td>
+<td style="text-align: right;">79949.89</td>
+<td style="text-align: right;">1.296500</td>
+<td style="text-align: right;">1.516583</td>
+<td style="text-align: right;">70.82050</td>
+<td style="text-align: right;">1.985917</td>
+<td style="text-align: right;">2.659975</td>
+<td style="text-align: right;">12.83598</td>
+<td style="text-align: right;">16.18499</td>
+<td style="text-align: right;">2.202419</td>
+<td style="text-align: right;">0.1745098</td>
+<td style="text-align: right;">3.680000</td>
+<td style="text-align: right;">83.20120</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Belle-ile</td>
+<td style="text-align: left;">Belle-ile 3</td>
+<td style="text-align: right;">50499.43</td>
+<td style="text-align: right;">1.574250</td>
+<td style="text-align: right;">1.981583</td>
+<td style="text-align: right;">72.41275</td>
+<td style="text-align: right;">4.348667</td>
+<td style="text-align: right;">3.300667</td>
+<td style="text-align: right;">12.83598</td>
+<td style="text-align: right;">16.18499</td>
+<td style="text-align: right;">2.202419</td>
+<td style="text-align: right;">0.1745098</td>
+<td style="text-align: right;">3.500000</td>
+<td style="text-align: right;">85.73517</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Meaban</td>
+<td style="text-align: left;">Meaban 1</td>
+<td style="text-align: right;">14055.34</td>
+<td style="text-align: right;">1.215000</td>
+<td style="text-align: right;">2.744909</td>
+<td style="text-align: right;">48.69309</td>
+<td style="text-align: right;">6.900273</td>
+<td style="text-align: right;">2.941091</td>
+<td style="text-align: right;">12.49903</td>
+<td style="text-align: right;">19.50627</td>
+<td style="text-align: right;">3.702164</td>
+<td style="text-align: right;">0.0502023</td>
+<td style="text-align: right;">6.233333</td>
+<td style="text-align: right;">145.21592</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Meaban</td>
+<td style="text-align: left;">Meaban 2</td>
+<td style="text-align: right;">11123.45</td>
+<td style="text-align: right;">1.059909</td>
+<td style="text-align: right;">2.171909</td>
+<td style="text-align: right;">43.87164</td>
+<td style="text-align: right;">4.016636</td>
+<td style="text-align: right;">3.200909</td>
+<td style="text-align: right;">12.49903</td>
+<td style="text-align: right;">19.50627</td>
+<td style="text-align: right;">3.702164</td>
+<td style="text-align: right;">0.0502023</td>
+<td style="text-align: right;">5.880000</td>
+<td style="text-align: right;">145.67463</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Meaban</td>
+<td style="text-align: left;">Meaban 3</td>
+<td style="text-align: right;">12644.22</td>
+<td style="text-align: right;">1.343500</td>
+<td style="text-align: right;">2.143900</td>
+<td style="text-align: right;">49.63700</td>
+<td style="text-align: right;">6.124800</td>
+<td style="text-align: right;">3.250000</td>
+<td style="text-align: right;">12.43209</td>
+<td style="text-align: right;">19.52470</td>
+<td style="text-align: right;">3.722433</td>
+<td style="text-align: right;">0.0503572</td>
+<td style="text-align: right;">5.880000</td>
+<td style="text-align: right;">145.67463</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</section>
+<section id="pca-de-lenvironnement" class="level4">
+<h4 class="anchored" data-anchor-id="pca-de-lenvironnement">PCA de l’environnement</h4>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>targets<span class="sc">::</span><span class="fu">tar_load</span>(pca_env)</span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>knitr<span class="sc">::</span><span class="fu">include_graphics</span>(pca_env)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<p><img src="figures/bgpca_env.png" class="img-fluid" width="1050"></p>
+</div>
+</div>
+</section>
+</section>
+</section>
+
+</main>
+<!-- /main column -->
+<script id="quarto-html-after-body" type="application/javascript">
+window.document.addEventListener("DOMContentLoaded", function (event) {
+  const toggleBodyColorMode = (bsSheetEl) => {
+    const mode = bsSheetEl.getAttribute("data-mode");
+    const bodyEl = window.document.querySelector("body");
+    if (mode === "dark") {
+      bodyEl.classList.add("quarto-dark");
+      bodyEl.classList.remove("quarto-light");
+    } else {
+      bodyEl.classList.add("quarto-light");
+      bodyEl.classList.remove("quarto-dark");
+    }
+  }
+  const toggleBodyColorPrimary = () => {
+    const bsSheetEl = window.document.querySelector("link#quarto-bootstrap");
+    if (bsSheetEl) {
+      toggleBodyColorMode(bsSheetEl);
+    }
+  }
+  toggleBodyColorPrimary();  
+  const icon = "";
+  const anchorJS = new window.AnchorJS();
+  anchorJS.options = {
+    placement: 'right',
+    icon: icon
+  };
+  anchorJS.add('.anchored');
+  const clipboard = new window.ClipboardJS('.code-copy-button', {
+    target: function(trigger) {
+      return trigger.previousElementSibling;
+    }
+  });
+  clipboard.on('success', function(e) {
+    // button target
+    const button = e.trigger;
+    // don't keep focus
+    button.blur();
+    // flash "checked"
+    button.classList.add('code-copy-button-checked');
+    var currentTitle = button.getAttribute("title");
+    button.setAttribute("title", "Copied!");
+    let tooltip;
+    if (window.bootstrap) {
+      button.setAttribute("data-bs-toggle", "tooltip");
+      button.setAttribute("data-bs-placement", "left");
+      button.setAttribute("data-bs-title", "Copied!");
+      tooltip = new bootstrap.Tooltip(button, 
+        { trigger: "manual", 
+          customClass: "code-copy-button-tooltip",
+          offset: [0, -8]});
+      tooltip.show();    
+    }
+    setTimeout(function() {
+      if (tooltip) {
+        tooltip.hide();
+        button.removeAttribute("data-bs-title");
+        button.removeAttribute("data-bs-toggle");
+        button.removeAttribute("data-bs-placement");
+      }
+      button.setAttribute("title", currentTitle);
+      button.classList.remove('code-copy-button-checked');
+    }, 1000);
+    // clear code selection
+    e.clearSelection();
+  });
+  function tippyHover(el, contentFn) {
+    const config = {
+      allowHTML: true,
+      content: contentFn,
+      maxWidth: 500,
+      delay: 100,
+      arrow: false,
+      appendTo: function(el) {
+          return el.parentElement;
+      },
+      interactive: true,
+      interactiveBorder: 10,
+      theme: 'quarto',
+      placement: 'bottom-start'
+    };
+    window.tippy(el, config); 
+  }
+  const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+  for (var i=0; i<noterefs.length; i++) {
+    const ref = noterefs[i];
+    tippyHover(ref, function() {
+      // use id or data attribute instead here
+      let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+      try { href = new URL(href).hash; } catch {}
+      const id = href.replace(/^#\/?/, "");
+      const note = window.document.getElementById(id);
+      return note.innerHTML;
+    });
+  }
+  const findCites = (el) => {
+    const parentEl = el.parentElement;
+    if (parentEl) {
+      const cites = parentEl.dataset.cites;
+      if (cites) {
+        return {
+          el,
+          cites: cites.split(' ')
+        };
+      } else {
+        return findCites(el.parentElement)
+      }
+    } else {
+      return undefined;
+    }
+  };
+  var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+  for (var i=0; i<bibliorefs.length; i++) {
+    const ref = bibliorefs[i];
+    const citeInfo = findCites(ref);
+    if (citeInfo) {
+      tippyHover(citeInfo.el, function() {
+        var popup = window.document.createElement('div');
+        citeInfo.cites.forEach(function(cite) {
+          var citeDiv = window.document.createElement('div');
+          citeDiv.classList.add('hanging-indent');
+          citeDiv.classList.add('csl-entry');
+          var biblioDiv = window.document.getElementById('ref-' + cite);
+          if (biblioDiv) {
+            citeDiv.innerHTML = biblioDiv.innerHTML;
+          }
+          popup.appendChild(citeDiv);
+        });
+        return popup.innerHTML;
+      });
+    }
+  }
+});
+</script>
+</div> <!-- /content -->
+
+
+
+</body></html>

@@ -1,0 +1,63 @@
+---
+title: "Projet rdatoolbox CESAB"
+author: 
+- Liz Loutrage
+- Thomas Benoit
+- Victor Leite Jardim
+format: html
+editor: visual
+page-layout: full
+theme: minty
+toc: true
+toc-title: Sections
+toc-location: left
+toccolor: "#FAA5B8"
+---
+
+## Créer des beaux biplots ACP avec bgplot
+
+### Création d'un package et publication sur github
+[page bgplot sur github](https://github.com/victorleitejardim/bgplot)
+
+
+Regardons la page aide de la fonction bg_pca :
+
+```{r}
+#| echo: false
+htmltools::includeHTML("data/test.html")
+
+```
+
+### Création d'un workflow sur targets pour l'analyse
+```{r}
+#| warning: false
+targets::tar_visnetwork()
+```
+
+### Analyse des données
+#### Données sur la complexité structurelle du maërl
+```{r}
+#| echo: true
+comp <- targets::tar_read(bccomp_med_data)
+knitr::kable(head(comp[-1]), caption = paste("Données et metadonnées de complexité"))
+```
+
+#### PCA de la complexité 
+```{r}
+targets::tar_load(pca_comp)
+knitr::include_graphics(pca_comp)
+```
+
+#### Données de l'environnement
+```{r}
+env <- targets::tar_read(env_data)
+knitr::kable(head(env[-1]), caption = paste("Données et metadonnées environnementales"))
+```
+
+#### PCA de l'environnement
+```{r}
+targets::tar_load(pca_env)
+knitr::include_graphics(pca_env)
+```
+
+

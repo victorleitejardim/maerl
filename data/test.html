@@ -1,0 +1,249 @@
+<!DOCTYPE html><html><head><title>R: bg_pca</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.15.3/dist/katex.min.css">
+<script type="text/javascript">
+const macros = { "\\R": "\\textsf{R}", "\\code": "\\texttt"};
+function processMathHTML() {
+    var l = document.getElementsByClassName('reqn');
+    for (let e of l) { katex.render(e.textContent, e, { throwOnError: false, macros }); }
+    return;
+}</script>
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.15.3/dist/katex.min.js"
+    onload="processMathHTML();"></script>
+<link rel="stylesheet" type="text/css" href="R.css" />
+</head><body><div class="container">
+
+<table style="width: 100%;"><tr><td>bg_pca</td><td style="text-align: right;">R Documentation</td></tr></table>
+
+<h2>bg_pca</h2>
+
+<h3>Description</h3>
+
+<p>This function is built on pca output of vegan rda function and
+uses Aurelien Boye's code as a basis for creating pretty PCAs but
+with a lot of new cosmetic options
+</p>
+
+
+<h3>Usage</h3>
+
+<pre><code class='language-R'>bg_pca(
+  pca,
+  axes = c(1, 2),
+  metadata = NULL,
+  site.scaling = 1,
+  species.scaling = 2,
+  goodness.axis = 2,
+  goodness.thresh = 0.3,
+  main.group = NULL,
+  second.group = NULL,
+  nudge.x = NULL,
+  nudge.y = NULL,
+  scale.fill = NULL,
+  scale.shape = NULL,
+  scale.colour = NULL,
+  labels = NULL,
+  print.sp.thresh = FALSE,
+  ext.plot.scale = 5,
+  add.stat1 = TRUE,
+  stat1 = "chull",
+  add.stat2 = FALSE,
+  stat2 = NULL,
+  add.dens = TRUE,
+  add.centroids = FALSE,
+  point.size = 2.5,
+  c.size = 5,
+  p.alpha = 1,
+  font.size = 18/.pt,
+  axis.size = 22,
+  axis.text = 20,
+  conf.level = 0.95,
+  ysites = NULL,
+  xsites = NULL,
+  ysp = NULL,
+  xsp = NULL,
+  add.labels = TRUE
+)
+</code></pre>
+
+
+<h3>Arguments</h3>
+
+<table>
+<tr style="vertical-align: top;"><td><code>pca</code></td>
+<td>
+<p>a vegan pca output</p>
+</td></tr>
+<tr style="vertical-align: top;"><td><code>axes</code></td>
+<td>
+<p>numeric vector;the selected pca axes to plot</p>
+</td></tr>
+<tr style="vertical-align: top;"><td><code>metadata</code></td>
+<td>
+<p>a table containing the metadata mandatory to define the
+main and second groups</p>
+</td></tr>
+<tr style="vertical-align: top;"><td><code>site.scaling</code></td>
+<td>
+<p>numeric; scaling for the first plot -  defaut is
+scaling 1</p>
+</td></tr>
+<tr style="vertical-align: top;"><td><code>species.scaling</code></td>
+<td>
+<p>numeric; scaling for the second plot - defaut is
+scaling 2</p>
+</td></tr>
+<tr style="vertical-align: top;"><td><code>goodness.axis</code></td>
+<td>
+<p>numeric; the number of axis used to calculate the goodness
+of fit of the species</p>
+</td></tr>
+<tr style="vertical-align: top;"><td><code>goodness.thresh</code></td>
+<td>
+<p>numeric; goodness of fit threshold for selecting species</p>
+</td></tr>
+<tr style="vertical-align: top;"><td><code>main.group</code></td>
+<td>
+<p>factor; defines the grouping variable used to calculate the
+densities and to define the color and fill aesthethics, it cannot be empty</p>
+</td></tr>
+<tr style="vertical-align: top;"><td><code>second.group</code></td>
+<td>
+<p>factor; defines a second level of grouping that, if present,
+will be highlighted with different shape</p>
+</td></tr>
+<tr style="vertical-align: top;"><td><code>nudge.x</code></td>
+<td>
+<p>numeric vector; defines the gap between the labels and the group
+centroid in the x axis, it must have the same length as the grouping variables
+defined in main.group</p>
+</td></tr>
+<tr style="vertical-align: top;"><td><code>nudge.y</code></td>
+<td>
+<p>numeric vector; defines the gap between the labels and the group
+centroid in the y axis, it must have the same length as the grouping variables
+defined in main.group</p>
+</td></tr>
+<tr style="vertical-align: top;"><td><code>scale.fill</code></td>
+<td>
+<p>string; contains the palette for fill aesthetics</p>
+</td></tr>
+<tr style="vertical-align: top;"><td><code>scale.shape</code></td>
+<td>
+<p>numeric vector; contains the shape types for shape aesthetics</p>
+</td></tr>
+<tr style="vertical-align: top;"><td><code>scale.colour</code></td>
+<td>
+<p>string; contains the palette for colour aesthetics</p>
+</td></tr>
+<tr style="vertical-align: top;"><td><code>labels</code></td>
+<td>
+<p>factor; factor in metadata containing the label of each level of
+the grouping variables in main.group or second.group</p>
+</td></tr>
+<tr style="vertical-align: top;"><td><code>print.sp.thresh</code></td>
+<td>
+<p>logical; print the goodness of fit threshold for
+selecting species' vectors</p>
+</td></tr>
+<tr style="vertical-align: top;"><td><code>ext.plot.scale</code></td>
+<td>
+<p>numeric; scale for density plots in proportion to other
+plots</p>
+</td></tr>
+<tr style="vertical-align: top;"><td><code>add.stat1</code></td>
+<td>
+<p>logical; add either a convex hull or an ellipse to each group
+on the first plot</p>
+</td></tr>
+<tr style="vertical-align: top;"><td><code>stat1</code></td>
+<td>
+<p>character; choose between a convex hull &quot;chull&quot; or an ellipse
+&quot;ellipse&quot; for the first plot</p>
+</td></tr>
+<tr style="vertical-align: top;"><td><code>add.stat2</code></td>
+<td>
+<p>logical; add either a convex hull or an ellipse to each group
+on the second plot</p>
+</td></tr>
+<tr style="vertical-align: top;"><td><code>stat2</code></td>
+<td>
+<p>character; choose between a convex hull &quot;chull&quot; or an ellipse
+&quot;ellipse&quot; for the second plot</p>
+</td></tr>
+<tr style="vertical-align: top;"><td><code>add.dens</code></td>
+<td>
+<p>logical; add the density plots</p>
+</td></tr>
+<tr style="vertical-align: top;"><td><code>add.centroids</code></td>
+<td>
+<p>logical; add centroids for each group</p>
+</td></tr>
+<tr style="vertical-align: top;"><td><code>point.size</code></td>
+<td>
+<p>numeric; define sites' point size</p>
+</td></tr>
+<tr style="vertical-align: top;"><td><code>c.size</code></td>
+<td>
+<p>numeric; define centroids' point size</p>
+</td></tr>
+<tr style="vertical-align: top;"><td><code>p.alpha</code></td>
+<td>
+<p>numeric;  define the alpha for sites' points</p>
+</td></tr>
+<tr style="vertical-align: top;"><td><code>font.size</code></td>
+<td>
+<p>character;  defines the font size for geom_label using
+the syntax &quot;18/.pt&quot;</p>
+</td></tr>
+<tr style="vertical-align: top;"><td><code>axis.size</code></td>
+<td>
+<p>numeric; defines the font size for the axes titles</p>
+</td></tr>
+<tr style="vertical-align: top;"><td><code>axis.text</code></td>
+<td>
+<p>numeric; defines the font size fot the axes text</p>
+</td></tr>
+<tr style="vertical-align: top;"><td><code>conf.level</code></td>
+<td>
+<p>numeric; defines the C.I. of the ellipse</p>
+</td></tr>
+<tr style="vertical-align: top;"><td><code>ysites</code></td>
+<td>
+<p>numeric vector; force y axis limits for the first plot</p>
+</td></tr>
+<tr style="vertical-align: top;"><td><code>xsites</code></td>
+<td>
+<p>numeric vector; force x axis limits for the first plot</p>
+</td></tr>
+<tr style="vertical-align: top;"><td><code>ysp</code></td>
+<td>
+<p>numeric vector; force y axis limits for the second plot</p>
+</td></tr>
+<tr style="vertical-align: top;"><td><code>xsp</code></td>
+<td>
+<p>numeric vector; force x axis limits for the second plot</p>
+</td></tr>
+<tr style="vertical-align: top;"><td><code>add.labels</code></td>
+<td>
+<p>logical; add geom_label for plotting the group names</p>
+</td></tr>
+</table>
+
+
+<h3>Value</h3>
+
+<p>returns a grid.arrange with two plots with the species and sites
+scaling biplots.
+</p>
+
+
+<h3>Examples</h3>
+
+<pre><code class='language-R'>set.seed(100)
+</code></pre>
+
+
+</div>
+</body></html>
