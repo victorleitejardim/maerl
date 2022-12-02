@@ -13,7 +13,8 @@ from the GDR Ecostat course at CESAB
 
 Please cite this compendium as:
 
-> **{{ PLEASE ADD A CITATION }}**
+> Benoit T., Jardim V. L. & Loutrage L. (2022) maerl: Projet rdatoolbox
+> CESAB. URL: <https://victorleitejardim.github.io/maerl/>.
 
 ### Content
 
